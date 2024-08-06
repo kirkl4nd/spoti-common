@@ -148,7 +148,24 @@ def main():
         else:
             print("\nCommon songs:")
             for song, num_users, num_appearances in common_songs:
-                print(f"{song}: {num_users} users, {num_appearances} appearances")
+                # Split the song title into lines of 64 characters or less
+                lines = []
+                current_line = song
+                while len(current_line) > 64:
+                    split_index = current_line.rfind(' ', 0, 64)
+                    if split_index == -1:
+                        split_index = 64
+                    lines.append(current_line[:split_index])
+                    current_line = current_line[split_index:].lstrip()
+                lines.append(current_line)
+
+                # Print the first line with aligned user counts and appearances
+                print(f"{lines[0]:<64} {num_users:>2} users, {num_appearances:>2} appearances")
+
+                # Print any additional lines with indentation
+                for line in lines[1:]:
+                    print(f"\t{line}")
+
     except KeyboardInterrupt:
         print("\nProgram interrupted by user.", file=sys.stderr)
     except Exception as e:
