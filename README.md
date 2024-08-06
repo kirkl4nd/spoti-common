@@ -12,7 +12,7 @@ spoti-common is a Python script that finds common songs across multiple Spotify 
 ## Prerequisites
 
 - Python 3.6 or higher
-- Spotify Developer account and API credentials
+- Spotify free account, used to create application ID and secret
 
 ## Installation
 
